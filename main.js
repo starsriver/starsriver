@@ -18,6 +18,12 @@ http.createServer((request, response) => {
                 apiServer.pictureFile(url, response);
             }
             break;
+        case "page":
+            {
+                url.shift();
+                apiServer.pageFile(url, response);
+            }
+            break;
         case "js":
             {
                 url.shift();
@@ -34,6 +40,12 @@ http.createServer((request, response) => {
             {
                 url.shift();
                 apiServer.pictureFile(url, response);
+            }
+            break;
+        case "audio":
+            {
+                url.shift();
+                apiServer.audioFile(url, response);
             }
             break;
         default:

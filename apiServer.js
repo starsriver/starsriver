@@ -9,11 +9,28 @@ var readFileError = response => {
 
 /**
  * 
- * @param {string[]} url mainpagefile url
+ * @param {string[]} url main page file url
  * @param {ServerResponse} response Server Response
  */
 var mainPage = (url, response) => {
-    fs.readFile("./page/" + url[0] + ".html", "utf-8", (err, file) => {
+    fs.readFile("./res/page/" + url[0] + ".html", "utf-8", (err, file) => {
+        if (err) {
+            readFileError(response);
+        } else {
+            response.writeHead(200, { "Content-Type": "text/html" });
+            response.write(file, "utf-8");
+            response.end();
+        }
+    });
+};
+
+/**
+ * 
+ * @param {string[]} url other page file url
+ * @param {ServerResponse} response Server Response
+ */
+var pageFile = (url, response) => {
+    fs.readFile("./res/page/" + url[0] + ".html", "utf-8", (err, file) => {
         if (err) {
             readFileError(response);
         } else {
@@ -30,7 +47,7 @@ var mainPage = (url, response) => {
  * @param {ServerResponse} response Server Response
  */
 var notFoundPage = (url, response) => {
-    fs.readFile("./page/notFound.html", "utf-8", (err, file) => {
+    fs.readFile("./res/page/notFound.html", "utf-8", (err, file) => {
         if (err) {
             readFileError(response);
         } else {
@@ -46,7 +63,7 @@ var notFoundPage = (url, response) => {
  * @param {string[]} response Server Response
  */
 var pictureFile = (url, response) => {
-    fs.readFile("./picture/" + url[0], "binary", (err, file) => {
+    fs.readFile("./res/picture/" + url[0], "binary", (err, file) => {
         if (err) {
             readFileError(response);
         } else {
@@ -59,11 +76,28 @@ var pictureFile = (url, response) => {
 
 /**
  * 
+ * @param {string[]} url audio file url
+ * @param {string[]} response Server Response
+ */
+var audioFile = (url, response) => {
+    fs.readFile("./res/audio/" + url[0], "binary", (err, file) => {
+        if (err) {
+            readFileError(response);
+        } else {
+            response.writeHead(200, { "Content-Type": "audio/mp3" });
+            response.write(file, "binary");
+            response.end();
+        }
+    });
+};
+
+/**
+ * 
  * @param {string[]} url javascript file url
  * @param {string[]} response Server Response
  */
 var jsFile = (url, response) => {
-    fs.readFile("./js/" + url[0], "utf-8", (err, file) => {
+    fs.readFile("./res/js/" + url[0], "utf-8", (err, file) => {
         if (err) {
             readFileError(response);
         } else {
@@ -80,7 +114,7 @@ var jsFile = (url, response) => {
  * @param {string[]} response Server Response
  */
 var cssFile = (url, response) => {
-    fs.readFile("./css/" + url[0], "utf-8", (err, file) => {
+    fs.readFile("./res/css/" + url[0], "utf-8", (err, file) => {
         if (err) {
             readFileError(response);
         } else {
@@ -93,6 +127,8 @@ var cssFile = (url, response) => {
 
 exports.notFoundPage = notFoundPage;
 exports.mainPage = mainPage;
+exports.pageFile = pageFile;
 exports.pictureFile = pictureFile;
 exports.jsFile = jsFile;
 exports.cssFile = cssFile;
+exports.audioFile = audioFile;
