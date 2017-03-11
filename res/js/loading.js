@@ -42,7 +42,6 @@ var Loading = function() {
                 if (datas[dataIndex].indexOf("mp3") >= 0) //文件是音频
                 {
                     var audio = document.createElement("audio"); //创建一个audio dom对象
-                    console.log('ss');
                     audio.preload = "auto"; //规定页面加载后加载整个音频
                     audio.src = datas[dataIndex]; //设置audio dom的路径
                     audio.addEventListener("canplaythrough", loadMp3);
@@ -62,7 +61,7 @@ var Loading = function() {
                             _this.percent = parseInt(dataIndex / datas.length * 100); //修正进度
                             li.call(_this); //继续加载
                         }
-                        console.log(document.body.innerHTML);
+
                         document.body.appendChild(audio);
                     }
                 } else {

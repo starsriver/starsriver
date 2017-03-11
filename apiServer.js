@@ -1,10 +1,10 @@
 var fs = require("fs");
 
-var readFileError = response => {
+var readFileError = (response, fileName) => {
     response.writeHead(404, { "Content-Type": "text/html" });
-    response.write("<h2>This is big error</h2>", "utf-8");
-    response.end("", "utf-8");
-    console.log("notFound.html read error");
+    response.write("<h2>we find the page error</h2>", "utf-8");
+    response.end();
+    console.error("read file error, file name: " + fileName);
 };
 
 /**
@@ -13,9 +13,10 @@ var readFileError = response => {
  * @param {ServerResponse} response Server Response
  */
 var mainPage = (url, response) => {
-    fs.readFile("./res/page/" + url[0] + ".html", "utf-8", (err, file) => {
+    var fileName = "./res/page/" + url[0] + ".html";
+    fs.readFile(fileName, "utf-8", (err, file) => {
         if (err) {
-            readFileError(response);
+            readFileError(response, fileName);
         } else {
             response.writeHead(200, { "Content-Type": "text/html" });
             response.write(file, "utf-8");
@@ -30,9 +31,10 @@ var mainPage = (url, response) => {
  * @param {ServerResponse} response Server Response
  */
 var pageFile = (url, response) => {
-    fs.readFile("./res/page/" + url[0] + ".html", "utf-8", (err, file) => {
+    var fileName = "./res/page/" + url[0] + ".html";
+    fs.readFile(fileName, "utf-8", (err, file) => {
         if (err) {
-            readFileError(response);
+            readFileError(response, fileName);
         } else {
             response.writeHead(200, { "Content-Type": "text/html" });
             response.write(file, "utf-8");
@@ -47,9 +49,10 @@ var pageFile = (url, response) => {
  * @param {ServerResponse} response Server Response
  */
 var notFoundPage = (url, response) => {
-    fs.readFile("./res/page/notFound.html", "utf-8", (err, file) => {
+    var fileName = "./res/page/notFound.html";
+    fs.readFile(fileName, "utf-8", (err, file) => {
         if (err) {
-            readFileError(response);
+            readFileError(response, fileName);
         } else {
             response.writeHead(404, { "Content-Type": "text/html" });
             response.write(file, "utf-8");
@@ -60,12 +63,13 @@ var notFoundPage = (url, response) => {
 /**
  * 
  * @param {string[]} url picture file url
- * @param {string[]} response Server Response
+ * @param {ServerResponse} response Server Response
  */
 var pictureFile = (url, response) => {
-    fs.readFile("./res/picture/" + url[0], "binary", (err, file) => {
+    var fileName = "./res/picture/" + url[0];
+    fs.readFile(fileName, "binary", (err, file) => {
         if (err) {
-            readFileError(response);
+            readFileError(response, fileName);
         } else {
             response.writeHead(200, { "Content-Type": "image/png" });
             response.write(file, "binary");
@@ -80,9 +84,10 @@ var pictureFile = (url, response) => {
  * @param {string[]} response Server Response
  */
 var audioFile = (url, response) => {
-    fs.readFile("./res/audio/" + url[0], "binary", (err, file) => {
+    var fileName = "./res/audio/" + url[0];
+    fs.readFile(fileName, "binary", (err, file) => {
         if (err) {
-            readFileError(response);
+            readFileError(response, fileName);
         } else {
             response.writeHead(200, { "Content-Type": "audio/mp3" });
             response.write(file, "binary");
@@ -97,9 +102,10 @@ var audioFile = (url, response) => {
  * @param {string[]} response Server Response
  */
 var jsFile = (url, response) => {
-    fs.readFile("./res/js/" + url[0], "utf-8", (err, file) => {
+    var fileName = "./res/js/" + url[0];
+    fs.readFile(fileName, "utf-8", (err, file) => {
         if (err) {
-            readFileError(response);
+            readFileError(response, fileName);
         } else {
             response.writeHead(200, { "Content-Type": "application/x-javascript" });
             response.write(file, "utf-8");
@@ -114,9 +120,10 @@ var jsFile = (url, response) => {
  * @param {string[]} response Server Response
  */
 var cssFile = (url, response) => {
-    fs.readFile("./res/css/" + url[0], "utf-8", (err, file) => {
+    var fileName = "./res/css/" + url[0];
+    fs.readFile(fileName, "utf-8", (err, file) => {
         if (err) {
-            readFileError(response);
+            readFileError(response, fileName);
         } else {
             response.writeHead(200, { "Content-Type": "text/css" });
             response.write(file, "utf-8");
