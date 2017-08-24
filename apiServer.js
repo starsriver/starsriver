@@ -141,7 +141,7 @@ var apiCommand = function(url, response) {
     var command = url[0];
     switch(command){
         case "time":{
-            var now = Date();
+            var now = new Date();
             response.writeHead(200, {
                 "Content-Type": "application/json",
                 "Access-Control-Allow-Origin": "*"
