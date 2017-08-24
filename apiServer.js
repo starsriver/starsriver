@@ -132,6 +132,31 @@ var cssFile = (url, response) => {
     });
 };
 
+/**
+* 
+* @param {string[]} url css file url
+* @param {string[]} response Server Response
+*/
+var apiCommand = function(url, response) {
+    var command = url[0];
+    switch(command){
+        case "time":{
+            var now = Date();
+            response.writeHead(200, {
+                "Content-Type": "application/json",
+                "Access-Control-Allow-Origin": "*"
+            });
+            response.write(now.toJSON(), "utf-8");
+            response.end();
+        }
+        break;
+        default:{
+            readFileError(response, command);
+        }break;
+    }
+
+}
+
 exports.notFoundPage = notFoundPage;
 exports.mainPage = mainPage;
 exports.pageFile = pageFile;
@@ -139,3 +164,4 @@ exports.pictureFile = pictureFile;
 exports.jsFile = jsFile;
 exports.cssFile = cssFile;
 exports.audioFile = audioFile;
+exports.apiCommand =apiCommand;

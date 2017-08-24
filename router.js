@@ -12,6 +12,12 @@ var routerSwitch = (url, response) => {
                 apiServer.mainPage(["main"], response);
             }
             break;
+        case "api":
+            {
+                url.shift();
+                apiServer.apiCommand(url, response);
+            }
+            break;
         case "blog":
             {
                 url.shift();
