@@ -1,4 +1,4 @@
-import fs from "fs";
+const fs = require("fs");
 
 function readFileError(response, fileName) {
     response.writeHead(404, { "Content-Type": "text/html" });

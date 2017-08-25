@@ -1,4 +1,4 @@
-import apiServer from "./apiServer.js";
+const apiServer = require("./apiServer.js");
 /**
  * 
  * @param {string[]} url request url
