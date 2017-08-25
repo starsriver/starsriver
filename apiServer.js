@@ -1,8 +1,8 @@
-var fs = require("fs");
+import fs from "fs";
 
-var readFileError = (response, fileName) => {
+function readFileError(response, fileName) {
     response.writeHead(404, { "Content-Type": "text/html" });
-    response.write("<h2>we find the page error</h2>", "utf-8");
+    response.write("<h2>we find the file</h2>", "utf-8");
     response.end();
     console.error("read file error, file name: " + fileName);
 };
@@ -12,8 +12,8 @@ var readFileError = (response, fileName) => {
  * @param {string[]} url main page file url
  * @param {ServerResponse} response Server Response
  */
-var mainPage = (url, response) => {
-    var fileName = "./res/page/" + url[0] + ".html";
+function mainPage(url, response) {
+    const fileName = "./res/page/" + url[0] + ".html";
     fs.readFile(fileName, "utf-8", (err, file) => {
         if (err) {
             readFileError(response, fileName);
@@ -30,8 +30,8 @@ var mainPage = (url, response) => {
  * @param {string[]} url other page file url
  * @param {ServerResponse} response Server Response
  */
-var pageFile = (url, response) => {
-    var fileName = "./res/page/" + url[0] + ".html";
+function pageFile(url, response) {
+    const fileName = "./res/page/" + url[0] + ".html";
     fs.readFile(fileName, "utf-8", (err, file) => {
         if (err) {
             readFileError(response, fileName);
@@ -48,8 +48,8 @@ var pageFile = (url, response) => {
  * @param {string[]} url error url
  * @param {ServerResponse} response Server Response
  */
-var notFoundPage = (url, response) => {
-    var fileName = "./res/page/notFound.html";
+function notFoundPage (url, response) {
+    const fileName = "./res/page/notFound.html";
     fs.readFile(fileName, "utf-8", (err, file) => {
         if (err) {
             readFileError(response, fileName);
@@ -65,8 +65,8 @@ var notFoundPage = (url, response) => {
  * @param {string[]} url picture file url
  * @param {ServerResponse} response Server Response
  */
-var pictureFile = (url, response) => {
-    var fileName = "./res/picture/" + url[0];
+function pictureFile(url, response) {
+    const fileName = "./res/picture/" + url[0];
     fs.readFile(fileName, "binary", (err, file) => {
         if (err) {
             readFileError(response, fileName);
@@ -81,10 +81,10 @@ var pictureFile = (url, response) => {
 /**
  * 
  * @param {string[]} url audio file url
- * @param {string[]} response Server Response
+ * @param {ServerResponse} response Server Response
  */
-var audioFile = (url, response) => {
-    var fileName = "./res/audio/" + url[0];
+function audioFile(url, response) {
+    const fileName = "./res/audio/" + url[0];
     fs.readFile(fileName, "binary", (err, file) => {
         if (err) {
             readFileError(response, fileName);
@@ -99,10 +99,10 @@ var audioFile = (url, response) => {
 /**
  * 
  * @param {string[]} url javascript file url
- * @param {string[]} response Server Response
+ * @param {ServerResponse} response Server Response
  */
-var jsFile = (url, response) => {
-    var fileName = "./res/js/" + url[0];
+function jsFile(url, response) {
+    const fileName = "./res/js/" + url[0];
     fs.readFile(fileName, "utf-8", (err, file) => {
         if (err) {
             readFileError(response, fileName);
@@ -117,10 +117,10 @@ var jsFile = (url, response) => {
 /**
  * 
  * @param {string[]} url css file url
- * @param {string[]} response Server Response
+ * @param {ServerResponse} response Server Response
  */
-var cssFile = (url, response) => {
-    var fileName = "./res/css/" + url[0];
+function cssFile(url, response) {
+    const fileName = "./res/css/" + url[0];
     fs.readFile(fileName, "utf-8", (err, file) => {
         if (err) {
             readFileError(response, fileName);
@@ -135,13 +135,13 @@ var cssFile = (url, response) => {
 /**
 * 
 * @param {string[]} url css file url
-* @param {string[]} response Server Response
+* @param {ServerResponse} response Server Response
 */
-var apiCommand = function(url, response) {
-    var command = url[0];
+function apiCommand(url, response) {
+    const command = url[0];
     switch(command){
         case "time":{
-            var now = new Date();
+            let now = new Date();
             response.writeHead(200, {
                 "Content-Type": "application/json",
                 "Access-Control-Allow-Origin": "*"
@@ -154,14 +154,14 @@ var apiCommand = function(url, response) {
             readFileError(response, command);
         }break;
     }
-
 }
-
-exports.notFoundPage = notFoundPage;
-exports.mainPage = mainPage;
-exports.pageFile = pageFile;
-exports.pictureFile = pictureFile;
-exports.jsFile = jsFile;
-exports.cssFile = cssFile;
-exports.audioFile = audioFile;
-exports.apiCommand =apiCommand;
+export {
+    notFoundPage,
+    mainPage,
+    pageFile,
+    pictureFile,
+    jsFile,
+    cssFile,
+    audioFile,
+    apiCommand
+};

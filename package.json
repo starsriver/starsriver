@@ -1,20 +1,22 @@
 {
     "name": "starsriver.cc",
-    "version": "0.0.2",
+    "version": "v0.0.5",
     "description": "starsriver.cc on Docker",
-    "main": "main.js",
+    "main": "index.js",
     "scripts": {
-        "start": "node main.js"
+        "start": "node index.js"
     },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/starsriver/starsriver.git"
-    },
-    "keywords": ["nodeJS", "Docker", "Personal Website"],
+    "repository": "git+https://github.com/starsriver/starsriver.git",
+    "keywords": [
+        "nodeJS",
+        "Docker",
+        "Personal Website"
+    ],
     "author": "starsriver",
     "license": "ISC",
     "bugs": {
         "url": "https://github.com/starsriver/starsriver/issues"
     },
-    "homepage": "https://github.com/starsriver/starsriver#readme"
+    "homepage": "https://github.com/starsriver/starsriver#readme",
+    "dependencies": {}
 }
