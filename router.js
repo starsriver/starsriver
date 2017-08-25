@@ -4,7 +4,7 @@ const apiServer = require("./apiServer.js");
  * @param {string[]} url request url
  * @param {ServerResponse} response Server Response
  */
-export default function routerSwitch(url, response) {
+function routerSwitch(url, response) {
     switch (url[0]) {
         case "": {
             apiServer.mainPage(["main"], response);
@@ -51,3 +51,5 @@ export default function routerSwitch(url, response) {
         break;
     };
 }
+
+exports.routerSwitch = routerSwitch;

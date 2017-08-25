@@ -1,6 +1,6 @@
 {
     "name": "starsriver.cc",
-    "version": "0.0.5.3",
+    "version": "v0.0.5.4",
     "description": "starsriver.cc on Docker",
     "main": "index.js",
     "scripts": {

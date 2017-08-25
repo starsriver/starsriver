@@ -155,13 +155,12 @@ function apiCommand(url, response) {
         }break;
     }
 }
-export {
-    notFoundPage,
-    mainPage,
-    pageFile,
-    pictureFile,
-    jsFile,
-    cssFile,
-    audioFile,
-    apiCommand
-};
+
+exports.notFoundPage = notFoundPage;
+exports.mainPage = mainPage;
+exports.pageFile = pageFile;
+exports.pictureFile = pictureFile;
+exports.jsFile = jsFile;
+exports.cssFile = cssFile;
+exports.audioFile = audioFile;
+exports.apiCommand = apiCommand;

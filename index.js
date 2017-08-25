@@ -15,8 +15,8 @@ http.createServer((request, response) => {
 
     router.routerSwitch(url, response);
 
-    console.log("IP: " + getClientIp(request) + " ,Method: " + request.method + " ,Url: " + request.url);
-    
+    console.log("IP: " + getClientIp(request) + ", Method: " + request.method + ", Url: " + request.url);
+
 }).listen(80);
 
 console.log("serve is running.");
