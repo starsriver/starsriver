@@ -2,7 +2,6 @@ const apiServer = require("./apiServer.js");
 /**
  * 
  * @param {string[]} url request url
- * @param {string} host request host
  * @param {ServerResponse} response Server Response
  */
 export default function routerSwitch(url, response) {
