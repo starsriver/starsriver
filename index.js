@@ -1,22 +1,20 @@
 const http = require("http");
 const router = require("./router.js");
-
-function getClientIp(request) {
-    return request.headers['x-forwarded-for'] ||
-        request.connection.remoteAddress ||
-        request.socket.remoteAddress ||
-        request.connection.socket.remoteAddress;
-};
+const requestIp = require("request-ip");
 
 http.createServer((request, response) => {
-    let url = request.url.split("/");
-    let host = request.headers.host;
-    url.shift();
+    try {
+        let url = request.url.split("/");
+        url.shift();
 
-    router.routerSwitch(url, response);
+        router.routerSwitch(url, response);
 
-    console.log("IP: " + getClientIp(request) + ", Method: " + request.method + ", Url: " + request.url);
-
+        let clientIp = requestIp.getClientIp(request);
+        console.log("IP: " + clientIp + ", Method: " + request.method + ", Url: " + request.url);
+    }
+    catch (e) {
+        console.log(e.message);
+    }
 }).listen(80);
 
 console.log("serve is running.");

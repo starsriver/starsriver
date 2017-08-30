@@ -21,5 +21,8 @@
     "bugs": {
         "url": "https://github.com/starsriver/starsriver/issues"
     },
-    "homepage": "https://github.com/starsriver/starsriver#readme"
+    "homepage": "https://github.com/starsriver/starsriver#readme",
+    "dependencies": {
+        "request-ip": "^2.0.2"
+    }
 }
